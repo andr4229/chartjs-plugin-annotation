@@ -9,6 +9,7 @@ export interface AnnotationTypeRegistry {
 	box: BoxAnnotationOptions
   ellipse: EllipseAnnotationOptions
   point: PointAnnotationOptions
+	pin: PinAnnotationOptions
 }
 
 export type AnnotationType = keyof AnnotationTypeRegistry;
@@ -60,6 +61,13 @@ interface PointAnnotationOptions extends CoreAnnotationOptions {
 	radius?: Scriptable<number, PartialEventContext>,
 	xValue?: Scriptable<ScaleValue, PartialEventContext>;
 	yValue?: Scriptable<ScaleValue, PartialEventContext>;
+}
+
+export interface PinAnnotationOptions extends CoreAnnotationOptions {
+	xValue?: Scriptable<ScaleValue, PartialEventContext>;
+	pinWidth?: Scriptable<number, PartialEventContext>;
+  pinRadius?: Scriptable<number, PartialEventContext>;
+	pinHeight?: Scriptable<number, PartialEventContext>;
 }
 
 export interface AnnotationPluginOptions extends AnnotationEvents {

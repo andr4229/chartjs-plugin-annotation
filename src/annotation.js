@@ -6,6 +6,7 @@ import LineAnnotation from './types/line';
 import EllipseAnnotation from './types/ellipse';
 import PointAnnotation from './types/point';
 import {version} from '../package.json';
+import PinAnnotation from './types/pin';
 
 const chartStates = new Map();
 
@@ -13,7 +14,8 @@ const annotationTypes = {
   box: BoxAnnotation,
   line: LineAnnotation,
   ellipse: EllipseAnnotation,
-  point: PointAnnotation
+  point: PointAnnotation,
+  pin: PinAnnotation
 };
 
 Object.keys(annotationTypes).forEach(key => {
@@ -213,7 +215,7 @@ function draw(chart, caller) {
   clipArea(ctx, chartArea);
   elements.forEach(el => {
     if (el.options.drawTime === caller) {
-      el.draw(ctx);
+      el.draw(ctx, chartArea);
     }
   });
   unclipArea(ctx);
